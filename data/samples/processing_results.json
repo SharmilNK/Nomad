@@ -1,0 +1,17 @@
+[
+  {
+    "image_id": 0,
+    "image_name": "WhatsApp Image 2025-11-08 at 21.13.55_7acdc938.jpg",
+    "timestamp": "2025-11-08T21:13:56.132511",
+    "has_signs": true,
+    "num_detections": 1,
+    "detections": [
+      {
+        "text": "Cabrillo Hwy",
+        "confidence": 0.95,
+        "sign_type": "highway",
+        "method": "openai_vision"
+      }
+    ]
+  }
+]
