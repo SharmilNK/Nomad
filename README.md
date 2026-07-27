@@ -134,6 +134,27 @@ Nomad expects a lightweight HTTP server on the Pi exposing:
 | `VISION_POLL_INTERVAL` | `10`                 | Seconds between vision polls |
 | `IMAGE_POLL_INTERVAL`  | `60`                 | Seconds between image downloads |
 
+## Deployment (Docker)
+
+Nomad ships with a Dockerfile for reproducible, containerized deployment. The image installs the PortAudio system libraries required by PyAudio and verifies the package imports at build time.
+
+```bash
+docker build -t nomad .
+
+# Offline single-image sign analysis (no microphone / Pi needed):
+docker run --rm nomad python -m nomad.pipeline data/samples/test1.jpg
+
+# Full voice companion (needs a microphone / Raspberry Pi at runtime):
+docker run --rm -e OPENAI_API_KEY=sk-... nomad
+```
+
+## Continuous Integration (CI)
+
+Every push and pull request runs a GitHub Actions pipeline (`.github/workflows/ci.yml`):
+
+- **Lint** — `ruff` static checks on the `nomad` package
+- **Tests** — `pytest` smoke tests for configuration, environment defaults, and directory bootstrapping (no API key or hardware required)
+
 ## License
 
 See repository license file for details.
